@@ -109,8 +109,8 @@ def reset():
 
 
 
-heading=Label(text="Show how fast you are..!!",font=('Audiowide',30),pady=10,bg="blue")
-time_label=Label( textvariable=time_str,bg="blue",font=('Audiowide',20))
+heading=Label(text="Show how fast you are..!!",font=('Audiowide',30),pady=10,bg="blue", fg="white")
+time_label=Label( textvariable=time_str,bg="blue",font=('Audiowide',20),fg="white")
 frame = Frame(root,bg="blue")
 Combo = Combobox(frame, values=vlist,)
 Combo.set("Pick the level")
@@ -122,8 +122,8 @@ textbox.bind('<Control-v>', lambda _:'break')
 textbox.bind('<Control-c>', lambda _:'break')
 entrybox = Text(root, width=52, height=5, padx=20)
 # buttons
-start_button = Button(root,text="start", padx=20, command=start)
-end_button = Button(root, text="end", padx=20, command=stop)
+start_button = Button(root,text="start", padx=20, command=start, activebackground="green")
+end_button = Button(root, text="end", padx=20, command=stop, activebackground="red")
 reset_button = Button(root, text="reset", padx=20, command=reset)
 
 
