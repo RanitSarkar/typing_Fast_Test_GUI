@@ -12,6 +12,7 @@ secs = 0
 hours = 0
 vlist = ["1","2","3","4","5","6","7","8","9","10"]
 text_sentence=""
+sentence_word=[]
 
 root=Tk()
 root.title("Typing speed test")
@@ -22,7 +23,7 @@ root.resizable(False,False)
 
 # get sentence random
 def sentence():
-	global text_sentence
+	global text_sentence, sentence_word
 	if Combo.get() == "1":
 		number_words = numberofwords[0]
 	elif Combo.get() == "2":
@@ -78,8 +79,22 @@ def start():
 	textbox.insert('end', f'{text_sentence}')
 
 
+def check():
+	global sentence_word
+	score=0
+	entryvalue=entrybox.get("1.0", END)
+	user_input=entryvalue.split(' ')
+	for _ in user_input:
+		if _ in sentence_word:
+			score+=1
+		else:
+			pass
+	textbox.delete(1.0, END)
+	textbox.insert('end', f'number of correct words = {score} \n 'f'time taken = {hours} hrs : {mins} mins : {secs} secs')
+
 
 def stop():
+	check()
 	running.set(False)
 
 def reset():
@@ -87,12 +102,11 @@ def reset():
 	hours= 0
 	mins = 0
 	secs = 0
+	entrybox.delete(1.0, END)
 	textbox.delete(1.0, END)
 	time_str.set(f"{int(hours):02d}:{int(mins):02d}:{secs:05.2f}")
 
-def check():
-	entryvalue=entrybox.get("1.0", END)
-	print(entryvalue)
+
 
 
 heading=Label(text="Show how fast you are..!!",font=('Audiowide',30),pady=10,bg="blue")
@@ -123,6 +137,7 @@ start_button.grid(row=4, column=0, padx=20, pady=20)
 end_button.grid(row=4, column=2,padx=20,pady=20)
 reset_button.grid(row=4, column=1,padx=20,pady=20)
 
+#ranit sarkar 203001170011
 
 
 root.mainloop()
